@@ -32,7 +32,7 @@ public class addPostServlet extends HttpServlet {
             postDao pdao = new postDao(connectionProvider.connectionProvider());
             if(pdao.savePost(p))
             {
-                String path = "/Users/amrita/Documents/javaProjects/TechBlog/src/main/webapp/blog_pics"+ File.separator+part.getSubmittedFileName();
+                String path = "/Users/ash/Documents/Eventora/src/main/webapp/blog_pics"+ File.separator+part.getSubmittedFileName();
                 Helper.saveFile(part.getInputStream(), path);
 
                 out.println("done");
