@@ -21,9 +21,98 @@
 
 %>
 <style>
-    .main-body{
-        background: radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(251,251,251,1) 100%);
-    }
+    <style>
+        :root {
+            --english-violet: #413c58;
+            --raspberry: #d81e5b;
+            --vermilion: #f0544f;
+            --ash-gray: #c6d8d3;
+            --papaya-whip: #fdf0d5;
+        }
+
+        .main-body {
+            background: linear-gradient(135deg, var(--papaya-whip) 0%, var(--ash-gray) 100%);
+            min-height: 100vh;
+        }
+
+        .navbar {
+            background-color: var(--english-violet) !important;
+        }
+
+        .navbar-brand, .nav-link {
+            color: var(--papaya-whip) !important;
+        }
+
+        .nav-link:hover {
+            color: var(--ash-gray) !important;
+        }
+
+        .text-warning {
+            color: var(--vermilion) !important;
+        }
+
+        .list-group-item.active {
+            background-color: var(--english-violet) !important;
+            border-color: var(--english-violet) !important;
+            color: var(--papaya-whip) !important;
+        }
+
+        .list-group-item:hover {
+            background-color: var(--ash-gray);
+        }
+
+        .modal-header {
+            background-color: var(--english-violet) !important;
+            color: var(--papaya-whip) !important;
+        }
+
+        .btn-primary {
+            background-color: var(--raspberry) !important;
+            border-color: var(--raspberry) !important;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--vermilion) !important;
+            border-color: var(--vermilion) !important;
+        }
+
+        .btn-outline-primary {
+            color: var(--raspberry) !important;
+            border-color: var(--raspberry) !important;
+        }
+
+        .btn-outline-primary:hover {
+            background-color: var(--raspberry) !important;
+            color: var(--papaya-whip) !important;
+        }
+
+        .table-striped tbody tr:nth-of-type(odd) {
+            background-color: rgba(198, 216, 211, 0.2);
+        }
+
+        .form-control:focus {
+            border-color: var(--raspberry);
+            box-shadow: 0 0 0 0.2rem rgba(216, 30, 91, 0.25);
+        }
+
+        #loader {
+            color: var(--english-violet);
+        }
+
+        .alert-success {
+            background-color: var(--ash-gray);
+            border-color: var(--english-violet);
+            color: var(--english-violet);
+        }
+
+        .close {
+            color: var(--papaya-whip) !important;
+        }
+
+        .modal-content {
+            background-color: var(--papaya-whip);
+        }
+    </style>
 </style>
 <html>
 <head>
@@ -46,7 +135,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link" href="#"><span class="fa fa-user-plus"></span></span>Contact</a>
+                    <a class="nav-link" href="contact.jsp"><span class="fa fa-user-plus"></span></span>Contact</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link text-warning" href="#" data-toggle="modal" data-target="#do-post-modal"><span class="fa fa-pencil-square-o"></span></span> New Event</a>

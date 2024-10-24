@@ -5,38 +5,120 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Login</title>
-    <%--css--%>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link href="css/style.css" rel="stylesheet" type="text/css">
+    <title>Eventora - Login</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        :root {
+            --english-violet: #413c58;
+            --raspberry: #d81e5b;
+            --vermilion: #f0544f;
+            --ash-gray: #c6d8d3;
+            --papaya-whip: #fdf0d5;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--papaya-whip);
+            color: var(--english-violet);
+        }
+
+        .navbar {
+            background-color: var(--english-violet);
+            padding: 1rem 2rem;
+        }
+
+        .navbar-brand, .nav-link {
+            color: var(--papaya-whip) !important;
+        }
+
+        .card {
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card-header {
+            background-color: var(--english-violet);
+            color: var(--papaya-whip);
+            border-radius: 15px 15px 0 0 !important;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .card-body {
+            padding: 2rem;
+            background-color: white;
+            border-radius: 0 0 15px 15px;
+        }
+
+        .btn-primary {
+            background-color: var(--raspberry);
+            border: none;
+            padding: 0.8rem 2rem;
+            transition: all 0.3s ease;
+            width: 100%;
+            margin-top: 1rem;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--vermilion);
+            transform: scale(1.02);
+        }
+
+        .form-control {
+            padding: 0.8rem;
+            border-radius: 8px;
+            border: 1px solid var(--ash-gray);
+            margin-bottom: 1rem;
+        }
+
+        .form-control:focus {
+            border-color: var(--raspberry);
+            box-shadow: 0 0 0 0.2rem rgba(216, 30, 91, 0.25);
+        }
+
+        #loader {
+            color: var(--raspberry);
+        }
+
+        .alert {
+            border-radius: 8px;
+            margin-bottom: 1rem;
+        }
+    </style>
 </head>
 <body>
-<%--navbar--%>
-<%@include file="normal_navbar.jsp"%>
-<main class="d-flex align-items-center banner-background" style="height: 80vh;">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-6 offset-md-3">
+    <%@ include file="normal_navbar.jsp"%>
+    <%@ page import="com.techblog.entities.Message" %>
+
+    <div class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
                 <div class="card">
-                    <div class="card-header text-center bg-dark text-white">
-                        <span class="fa fa-user-circle fa-3x"></span>
-                        <h2 class="fw-bold mb-2 text-uppercase">Login</h2>
+                    <div class="card-header">
+                        <span class="fa fa-user-circle fa-3x mb-3"></span>
+                        <h2>Welcome Back!</h2>
+                        <p class="mb-0">Please login to continue</p>
                     </div>
+
                     <%
                         Message m = (Message)session.getAttribute("msg");
-                        if(m!=null)
-                        {
+                        if(m!=null) {
                     %>
-
-                    <div class="alert <%=m.getCssClass() %> alert-dismissible fade show" role="alert">
-                        <%= m.getContent()%>
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-
+                        <div class="alert <%=m.getCssClass()%> alert-dismissible fade show" role="alert">
+                            <%= m.getContent()%>
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
                     <%
                             session.removeAttribute("msg");
                         }
@@ -46,35 +128,26 @@
                         <form action="loginServlet" method="post">
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Email address</label>
-                                <input name="email" required type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-                                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                                <input name="email" required type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter your email">
+                                <small class="text-muted">We'll never share your email with anyone else.</small>
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputPassword1">Password</label>
-                                <input name="password" required type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                                <input name="password" required type="password" class="form-control" id="exampleInputPassword1" placeholder="Enter your password">
                             </div>
-
-                            <div class="text-center" style="margin-top: 20px;"><button type="submit" class="btn btn-dark">Login</button></div>
+                            <button type="submit" class="btn btn-primary">Login</button>
                         </form>
+                        <div class="text-center mt-3">
+                            <p class="mb-0">Don't have an account? <a href="register_page.jsp" style="color: var(--raspberry);">Register here</a></p>
+                        </div>
                     </div>
-
-<%--                    <div class="card-footer">--%>
-<%--                        --%>
-<%--                    </div>--%>
                 </div>
             </div>
         </div>
     </div>
-</main>
 
-
-<%--javascript--%>
-<script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-<script src="js/myjs.js" type="text/javascript"></script>
-<%----%>
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/myjs.js"></script>
 </body>
 </html>

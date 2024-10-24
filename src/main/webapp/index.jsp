@@ -1,91 +1,219 @@
-<%@ page import="java.sql.Connection" %>
-<%@ page import="com.techblog.helper.connectionProvider" %>
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Home</title>
-    <%--css--%>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link href="css/style.css" rel="stylesheet" type="text/css">
+    <title>Eventora - Campus Events Platform</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 20px;
-        }
-        h1 {
-            font-size: 3rem; /* Adjust font size as needed */
-            color: #FFD700; /* Gold color */
-            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); /* Adds depth with a shadow */
-            font-family: 'Cursive', 'Comic Sans MS', sans-serif; /* Stylish font */
-            margin: 0; /* Remove default margin */
+        :root {
+            --english-violet: #413c58;
+            --raspberry: #d81e5b;
+            --vermilion: #f0544f;
+            --ash-gray: #c6d8d3;
+            --papaya-whip: #fdf0d5;
         }
 
-        h2 {
-            font-size: 2rem;
-            margin-top: 20px;
-        }
-        p {
-            font-size: 1.1rem;
-            color: #333;
-            line-height: 1.6;
-        }
-        ul {
-            list-style-type: none;
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
             padding: 0;
+            background-color: var(--papaya-whip);
+            color: var(--english-violet);
+        }
+
+        .navbar {
+            background-color: var(--english-violet);
+            padding: 1rem 2rem;
+        }
+
+        .navbar-brand, .nav-link {
+            color: var(--papaya-whip) !important;
+        }
+
+        .hero-section {
+            background: linear-gradient(135deg, var(--english-violet), var(--raspberry));
+            padding: 4rem 0;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .main-title {
+            font-size: 4rem;
+            font-weight: bold;
+            color: var(--papaya-whip);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            margin-bottom: 2rem;
+        }
+
+        .card {
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            margin-bottom: 2rem;
+            overflow: hidden;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .card-header {
+            background-color: var(--english-violet);
+            color: var(--papaya-whip);
+            font-weight: bold;
+            padding: 1.5rem;
+            border-bottom: none;
+        }
+
+        .card-body {
+            padding: 2rem;
+            background-color: white;
+        }
+
+        .welcome-card {
+            border-left: 5px solid var(--raspberry);
+        }
+
+        .events-card {
+            border-left: 5px solid var(--vermilion);
+        }
+
+        .explore-card {
+            border-left: 5px solid var(--english-violet);
+        }
+
+        .event-item {
+            background-color: var(--ash-gray);
+            padding: 1rem;
+            margin: 0.5rem 0;
+            border-radius: 10px;
+            transition: transform 0.2s ease;
+        }
+
+        .event-item:hover {
+            transform: scale(1.02);
+        }
+
+        .btn-primary {
+            background-color: var(--raspberry);
+            border: none;
+            padding: 0.8rem 2rem;
+            margin-right: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--vermilion);
+            transform: scale(1.05);
+        }
+
+        .cta-section {
+            margin-top: 2rem;
+            text-align: center;
+        }
+
+        .icon-feature {
+            font-size: 2rem;
+            color: var(--raspberry);
+            margin-bottom: 1rem;
         }
     </style>
 </head>
 <body>
+    <%@ include file="normal_navbar.jsp"%>
 
-<%--navbar--%>
-<%@ include file="normal_navbar.jsp"%>
-
-<%--banner--%>
-<div class="container-fluid p-0 m-0">
-    <div class="jumbotron banner-background">
-
+    <!-- Hero Section -->
+    <section class="hero-section">
         <div class="container">
-            <h1>Welcome, Friends</h1>
-            <h2>College Events Hub</h2>
-            <p>Welcome to the College Events Hub, your go-to platform for all things related to campus activities and events!</p>
+            <h1 class="main-title">Eventora</h1>
+        </div>
+    </section>
 
-            <p>At our college, we believe that student life extends beyond the classroom. Our events provide opportunities to connect, learn, and grow, fostering a vibrant community on campus. Whether you’re looking for academic workshops, cultural festivals, or social gatherings, we’ve got you covered.</p>
+    <!-- Main Content -->
+    <div class="container py-5">
+        <!-- Welcome Card -->
+        <div class="card welcome-card">
+            <div class="card-header">
+                <i class="fa fa-star icon-feature"></i>
+                Welcome to Eventora
+            </div>
+            <div class="card-body">
+                <p class="lead">Your go-to platform for all things related to campus activities and events!</p>
+                <p>At our college, we believe that student life extends beyond the classroom. Our events provide opportunities to connect, learn, and grow, fostering a vibrant community on campus. Whether you're looking for academic workshops, cultural festivals, or social gatherings, we've got you covered.</p>
+            </div>
+        </div>
 
-            <h2>What We Offer</h2>
-            <p>Our event management team organizes a wide range of activities designed to engage and inspire students. From guest lectures by industry professionals to fun-filled social events, there’s something for everyone.</p>
+        <!-- What We Offer Card -->
+        <div class="card events-card">
+            <div class="card-header">
+                <i class="fa fa-calendar icon-feature"></i>
+                What We Offer
+            </div>
+            <div class="card-body">
+                <p>Our event management team organizes a wide range of activities designed to engage and inspire students. From guest lectures by industry professionals to fun-filled social events, there's something for everyone.</p>
 
-            <h3>Explore our diverse events:</h3>
-            <ul style="background: #e7f3fe; margin: 10px 0;
-            padding: 10px;
-            border-left: 5px solid #4A90E2;">
-                <li><strong>Workshops and Seminars</strong>: Enhance your skills and knowledge with sessions led by experts.</li>
-                <li><strong>Cultural Celebrations</strong>: Experience the richness of our diverse community through festivals and performances.</li>
-                <li><strong>Networking Opportunities</strong>: Connect with peers, alumni, and professionals at our events.</li>
-                <li><strong>Social Gatherings</strong>: Join us for fun events to make lasting memories with friends.</li>
-            </ul>
+                <div class="row mt-4">
+                    <div class="col-md-6">
+                        <div class="event-item">
+                            <i class="fa fa-laptop me-2"></i>
+                            <strong>Workshops and Seminars</strong>
+                            <p class="mb-0">Enhance your skills and knowledge with sessions led by experts.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="event-item">
+                            <i class="fa fa-music me-2"></i>
+                            <strong>Cultural Celebrations</strong>
+                            <p class="mb-0">Experience the richness of our diverse community through festivals and performances.</p>
+                        </div>
+                    </div>
+                </div>
 
-            <p>Get ready to dive into an exciting world of events and activities that will enrich your college experience!</p>
+                <div class="row mt-3">
+                    <div class="col-md-6">
+                        <div class="event-item">
+                            <i class="fa fa-handshake-o me-2"></i>
+                            <strong>Networking Opportunities</strong>
+                            <p class="mb-0">Connect with peers, alumni, and professionals at our events.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="event-item">
+                            <i class="fa fa-users me-2"></i>
+                            <strong>Social Gatherings</strong>
+                            <p class="mb-0">Join us for fun events to make lasting memories with friends.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-            <a href="register_page.jsp" class="btn btn-dark btn-lg" style="margin-bottom: 50px; color: white;"><span class="fa fa-external-link"></span> Start! it's free</a>
-            <a href="login_page.jsp" class="btn btn-dark btn-lg" style="margin-bottom: 50px; color: white;"><span class="fa fa-user-circle fa-spin"></span> Login</a>
+        <!-- Explore Card -->
+        <div class="card explore-card">
+            <div class="card-header">
+                <i class="fa fa-compass icon-feature"></i>
+                Ready to Explore?
+            </div>
+            <div class="card-body text-center">
+                <p class="lead">Get ready to dive into an exciting world of events and activities that will enrich your college experience!</p>
+                <div class="cta-section">
+                    <a href="register_page.jsp" class="btn btn-primary btn-lg">
+                        <span class="fa fa-external-link"></span> Start! it's free
+                    </a>
+                    <a href="login_page.jsp" class="btn btn-outline-dark btn-lg">
+                        <span class="fa fa-user-circle fa-spin"></span> Login
+                    </a>
+                </div>
+            </div>
         </div>
     </div>
-</div>
 
-<%--javascript--%>
-<script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-<script src="js/myjs.js" type="text/javascript"></script>
-
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/myjs.js" type="text/javascript"></script>
 </body>
-
 </html>
