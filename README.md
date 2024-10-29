@@ -16,5 +16,6 @@ PROFILE:
 
 <img width="405" alt="Screenshot 2024-10-30 at 1 12 01 AM" src="https://github.com/user-attachments/assets/03b6a54d-042d-4e15-a5f0-ecfba4aae720">
 
+
 ALL EVENTS:
 <img width="1436" alt="Screenshot 2024-10-30 at 1 11 53 AM" src="https://github.com/user-attachments/assets/36957e90-f489-4ab1-b437-83e32fa1f0e3">
