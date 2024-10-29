@@ -13,6 +13,7 @@ CONTACT:
 <img width="1439" alt="Screenshot 2024-10-30 at 1 08 02 AM" src="https://github.com/user-attachments/assets/9fca174c-a16a-42ab-aa79-95fc5118edc3">
 
 PROFILE:
+
 <img width="405" alt="Screenshot 2024-10-30 at 1 12 01 AM" src="https://github.com/user-attachments/assets/03b6a54d-042d-4e15-a5f0-ecfba4aae720">
 
 ALL EVENTS:
