@@ -1,5 +1,12 @@
 Event Management Website- Eventora by Ashwani, Ayan, Shashwat, Gautam
 
+SETUP:
+1. Clone the this repo using git clone or just download the .zip file.
+2. Use IntelliJ IDEA or NET beans to open this project.
+3. install tomcat server.
+4. now head over to helloServlet main class and build the application using maven.
+5. now deploy it on the tomcat server
+
 MAIN PAGE:
 <img width="1437" alt="Screenshot 2024-10-30 at 1 07 39 AM" src="https://github.com/user-attachments/assets/fd0c4ef5-8636-4819-a54f-698e316bab34">
 
